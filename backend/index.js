@@ -1,6 +1,6 @@
 import cors from "@fastify/cors";
 import Fastify from "fastify";
-import { readFile } from "fs";
+import { read, readFile } from "fs";
 import fs from "fs/promises";
 import path from "path";
 
@@ -13,19 +13,24 @@ await fastify.register(cors, {
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
 });
 
-// Test si le serveur fonctionne
-// fastify.get("/", async () => {
-//   return { hello: "world" };
-// });
-
-const data = path.join(process.cwd(), "dataBase.json");
+//Test si le serveur fonctionne
+fastify.get("/", async (request, reply) => {
+  try {
+    const dataPath = path.join(process.cwd(), "database.json");
+    const dataBase = JSON.parse(await fs.readFile(dataPath), "utf-8");
+    const title = dataBase.habits[0].title;
+    return { title };
+  } catch (err) {
+    reply.code(500).send({ error: "Unable to read the database file" });
+  }
+});
 
 // Route d'affichage de la tache
-fastify.get("/", async (request, reply) => {
-  const dataBase = JSON.parse(await readFile(data));
+// fastify.get("/", async (request, reply) => {
+//   const dataBase = JSON.parse(await readFile(data));
 
-  reply.send(response);
-});
+//   reply.send(response);
+// });
 
 // Run the server!
 try {
