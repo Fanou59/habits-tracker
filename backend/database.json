@@ -3,12 +3,16 @@
     {
       "id": 1,
       "title": "Faire le ménage",
-      "daysDone": {}
+      "daysDone": {
+        "2024-06-19": false
+      }
     },
     {
       "id": 2,
       "title": "Faire du sport",
-      "daysDone": {}
+      "daysDone": {
+        "2024-06-19": true
+      }
     },
     {
       "id": 3,
