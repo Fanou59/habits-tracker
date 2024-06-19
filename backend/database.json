@@ -4,6 +4,21 @@
       "id": 1,
       "title": "Faire le ménage",
       "daysDone": {}
+    },
+    {
+      "id": 2,
+      "title": "Faire du sport",
+      "daysDone": {}
+    },
+    {
+      "id": 3,
+      "title": "Boire 2L d'eau",
+      "daysDone": {}
+    },
+    {
+      "id": 4,
+      "title": "Faire 2h de code",
+      "daysDone": {}
     }
   ]
 }
