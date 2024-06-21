@@ -2,13 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="stylesheet" href="style.css" />
+    <title>Habit Tracker</title>
   </head>
   <body>
     <div id="app">
-      <h1>Habit Tracker</h1>
+      <h1>Habit to make today !</h1>
+      <div id="today-habits" class="habits">
+        <button class="habit-square habit-done">
+          Test button <span>✅</span>
+        </button>
+      </div>
+      <button id="add-new-habit">Add a new habit</button>
+      <button id="open-history">See history</button>
     </div>
     <script type="module" src="/main.js"></script>
   </body>
