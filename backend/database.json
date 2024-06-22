@@ -4,37 +4,46 @@
       "id": 1,
       "title": "Faire le ménage",
       "daysDone": {
-        "2024-06-19": false
+        "2024-06-19": false,
+        "2024-06-22": false
       }
     },
     {
       "id": 2,
       "title": "Faire du sport",
       "daysDone": {
-        "2024-06-19": true
+        "2024-06-19": true,
+        "2024-06-22": false
       }
     },
     {
       "id": 3,
       "title": "Boire 2L d'eau",
-      "daysDone": {}
+      "daysDone": {
+        "2024-06-22": false
+      }
     },
     {
       "id": 4,
       "title": "Faire 2h de code",
       "daysDone": {
-        "2024-06-19": false
+        "2024-06-19": false,
+        "2024-06-22": false
       }
     },
     {
       "id": 5,
       "title": "un nouveau test",
-      "daysDone": {}
+      "daysDone": {
+        "2024-06-22": false
+      }
     },
     {
       "id": 6,
       "title": "Lire 1h",
-      "daysDone": {}
+      "daysDone": {
+        "2024-06-22": false
+      }
     }
   ]
 }

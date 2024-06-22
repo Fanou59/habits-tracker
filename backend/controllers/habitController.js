@@ -6,9 +6,11 @@ export const getAllHabits = async (request, reply) => {
     // Récupérer la base de donnée actuelle
     const dataBase = await getDatabase();
 
-    // Recupérer l'ensemble des titres des habitudes
-    const titles = dataBase.habits.map((habit) => habit.title);
-    return titles;
+    // Recupérer l'ensemble des titres et des id des habitudes
+    const habits = dataBase.habits.map((habit) => {
+      return { id: habit.id, title: habit.title, daysDone: habit.daysDone };
+    });
+    return habits;
   } catch (err) {
     console.error(`Error reading or parsing the file: ${err.message}`);
     reply.code(500).send({ error: "Unable to read the database file" });
@@ -64,7 +66,7 @@ export const toggleHabit = async (request, reply) => {
     // Trouver l'habitude correspondante dans la base de donnée
     const habit = dataBase.habits.find((habit) => habit.id === habitId);
     if (!habit) {
-      return reply.code(404).send({ error: "Habit not found" });
+      return reply.code(404).send({ success: false, error: "Habit not found" });
     }
 
     // Obtenir la date du jour au format YYYY-MM-DD
@@ -77,10 +79,12 @@ export const toggleHabit = async (request, reply) => {
     await saveDatabase(dataBase);
 
     // Répondre avec l'habitude mise à jour.
-    return reply.send(habit);
+    return reply.send({ success: true, habit });
   } catch (err) {
     console.error(`Error processing the request: ${err.message}`);
-    reply.code(500).send({ error: "Unable to process the request" });
+    reply
+      .code(500)
+      .send({ success: false, error: "Unable to process the request" });
   }
 };
 
@@ -109,7 +113,6 @@ export const getTodayHabits = async (request, reply) => {
 // Controleur pour obtenir des informations sur la base de donnée
 export const getDatabaseInfo = async (request, reply) => {
   try {
-
     // Récupérer la base de donnée actuelle
     const dataBase = await getDatabase();
 
