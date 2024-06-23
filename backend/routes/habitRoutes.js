@@ -1,5 +1,4 @@
 import {
-  getAllHabits,
   addHabit,
   toggleHabit,
   getTodayHabits,
@@ -8,9 +7,6 @@ import {
 
 // Export d'une fonction qui configure les routes fastify
 export default async function (fastify, opts) {
-  // Route GET /habits pour obtenir toutes les habitudes
-  fastify.get("/habits", getAllHabits);
-
   // Route POST /habits pour ajouter une nouvelle habitude
   fastify.post("/habits", addHabit);
 

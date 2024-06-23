@@ -1,11 +1,11 @@
 // Fichier pour centraliser les appels à l'api
 
 // Déclaration des variables
-const url = "http://127.0.0.1:3000/habits";
+const url = "http://127.0.0.1:3000/habits/today";
 
 // Fetch de récupération de toutes les habitudes
 // Methode GET
-export const fetchAll = () => {
+export const fetchTodayHabits = () => {
   return fetch(url, {
     method: "GET",
     headers: {

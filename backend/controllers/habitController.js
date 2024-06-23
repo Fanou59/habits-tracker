@@ -1,22 +1,5 @@
 import { getDatabase, saveDatabase } from "../models/habitModel.js";
 
-// Controleur pour lire toutes les habitudes
-export const getAllHabits = async (request, reply) => {
-  try {
-    // Récupérer la base de donnée actuelle
-    const dataBase = await getDatabase();
-
-    // Recupérer l'ensemble des titres et des id des habitudes
-    const habits = dataBase.habits.map((habit) => {
-      return { id: habit.id, title: habit.title, daysDone: habit.daysDone };
-    });
-    return habits;
-  } catch (err) {
-    console.error(`Error reading or parsing the file: ${err.message}`);
-    reply.code(500).send({ error: "Unable to read the database file" });
-  }
-};
-
 // Controleur pour ajouter une nouvelle habitude
 export const addHabit = async (request, reply) => {
   try {
@@ -97,13 +80,24 @@ export const getTodayHabits = async (request, reply) => {
     // Obtenir la date du jour au format YYYY-MM-DD
     const today = new Date().toISOString().split("T")[0];
 
-    // Filtrer les habitudes pour celles qui ont un statut enregistré pour aujourd'hui
-    const todayTitles = dataBase.habits
-      .filter((habit) => today in habit.daysDone) // vérifie si la date du jour est présente dans les jours effectués de l'habitude
-      .map((habit) => habit.title); // Mapper les habitudes filtrées pour obtenir seulement les titres
+    // Ajouter la date du jour avec un statut `false` si elle n'existe pas
+    dataBase.habits.forEach((habit) => {
+      if (!(today in habit.daysDone)) {
+        habit.daysDone[today] = false;
+      }
+    });
 
+    // Sauvegarder les données mises à jour dans la dB
+    await saveDatabase(dataBase);
+
+    // Filtrer les habitudes pour celles qui ont un statut enregistré pour aujourd'hui
+    const todayHabits = dataBase.habits
+      .filter((habit) => today in habit.daysDone) // vérifie si la date du jour est présente dans les jours effectués de l'habitude
+      .map((habit) => {
+        return { id: habit.id, title: habit.title, daysDone: habit.daysDone }; // Mapper les habitudes filtrées pour obtenir seulement les titres
+      });
     // Répondre avec les titres des habitudes pour la date du jour
-    return reply.send(todayTitles);
+    return reply.send(todayHabits);
   } catch (err) {
     console.error(`Error processing the request: ${err.message}`);
     reply.code(500).send({ error: "Unable to process the request" });

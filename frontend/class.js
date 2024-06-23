@@ -1,6 +1,6 @@
 // Déclaration de variables
 import { habitsDiv } from "./main";
-import { fetchAll, updateHabitIndB } from "./api/habits-api";
+import { fetchTodayHabits, updateHabitIndB } from "./api/habits-api";
 // Création class TodayHabit
 // -> Récupération de toutes les habitudes du jour
 // -> Création de HabitSquare avec les habitudes
@@ -11,7 +11,7 @@ export class TodayHabit {
 
   // Méthode pour afficher des habitudes du jour
   diplayHabits() {
-    fetchAll().then((data) => {
+    fetchTodayHabits().then((data) => {
       if (data) {
         data.forEach((habit) => {
           // Création d'un HabitSquare pour chaque habitude
@@ -30,7 +30,7 @@ export class TodayHabit {
 
   // Méthode pour mettre à jour l'habitude
   updateHabit(habitId) {
-    fetchAll()
+    fetchTodayHabits()
       .then((data) => {
         const habit = data.find((h) => h.id === habitId);
         if (!habit) {

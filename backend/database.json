@@ -5,7 +5,8 @@
       "title": "Faire le ménage",
       "daysDone": {
         "2024-06-19": false,
-        "2024-06-22": false
+        "2024-06-22": false,
+        "2024-06-23": true
       }
     },
     {
@@ -13,14 +14,16 @@
       "title": "Faire du sport",
       "daysDone": {
         "2024-06-19": true,
-        "2024-06-22": false
+        "2024-06-22": false,
+        "2024-06-23": true
       }
     },
     {
       "id": 3,
       "title": "Boire 2L d'eau",
       "daysDone": {
-        "2024-06-22": false
+        "2024-06-22": false,
+        "2024-06-23": true
       }
     },
     {
@@ -28,21 +31,24 @@
       "title": "Faire 2h de code",
       "daysDone": {
         "2024-06-19": false,
-        "2024-06-22": false
+        "2024-06-22": false,
+        "2024-06-23": false
       }
     },
     {
       "id": 5,
       "title": "un nouveau test",
       "daysDone": {
-        "2024-06-22": false
+        "2024-06-22": false,
+        "2024-06-23": false
       }
     },
     {
       "id": 6,
       "title": "Lire 1h",
       "daysDone": {
-        "2024-06-22": false
+        "2024-06-22": false,
+        "2024-06-23": false
       }
     }
   ]
