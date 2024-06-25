@@ -90,7 +90,7 @@ export const getTodayHabits = async (request, reply) => {
         return { id: habit.id, title: habit.title, daysDone: habit.daysDone };
       });
 
-    return reply.send(todayHabits);
+    return reply.send({ success: true, todayHabits });
   } catch (err) {
     errorHandler(err, request, reply);
   }
