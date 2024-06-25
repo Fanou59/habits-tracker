@@ -19,7 +19,7 @@ export const fetchTodayHabits = () => {
       return response.json();
     })
     .catch((error) => {
-      console.error("There was a problem with de fetch opreation :", error);
+      console.error("There was a problem with de fetch operation :", error);
     });
 };
 

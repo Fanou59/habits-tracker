@@ -1,9 +1,9 @@
 import { getDatabase, saveDatabase } from "../models/habitModel.js";
+import { errorHandler } from "./errorHandler.js";
 
-// Controleur pour ajouter une nouvelle habitude
+// Controleur pour ajouter une nouvelle habitude -> route /habits
 export const addHabit = async (request, reply) => {
   try {
-    // récupère la base actuelle
     const dataBase = await getDatabase();
 
     // calcul du nouvel identifiant pour l'habitude
@@ -27,17 +27,15 @@ export const addHabit = async (request, reply) => {
     // Sauvegarder les données mises à jour dans la base de donnée
     await saveDatabase(dataBase);
 
-    return { message: "Habit added successfully", habit: newHabit };
+    return reply.send({ success: true, habit });
   } catch (err) {
-    console.log("Error updating the file");
-    reply.code(500).send({ error: "Unable to update the database file" });
+    errorHandler(err, request, reply);
   }
 };
 
-// Controller pour modifier le statut d'une habitude pour la date du jour
+// Controller pour modifier le statut d'une habitude pour la date du jour -> route /habits/:id
 export const toggleHabit = async (request, reply) => {
   try {
-    // Récupérer la base de donnée actuelle
     const dataBase = await getDatabase();
 
     // Récupérer l'identifiant de l'habitude depuis les paramètres de la requête
@@ -61,20 +59,15 @@ export const toggleHabit = async (request, reply) => {
     // Sauvegarder les données mises à jour dans la base de donnée
     await saveDatabase(dataBase);
 
-    // Répondre avec l'habitude mise à jour.
     return reply.send({ success: true, habit });
   } catch (err) {
-    console.error(`Error processing the request: ${err.message}`);
-    reply
-      .code(500)
-      .send({ success: false, error: "Unable to process the request" });
+    errorHandler(err, request, reply);
   }
 };
 
-// Contrôleur pour obtenir les titres des habitudes pour la date du jour
+// Contrôleur pour obtenir les titres des habitudes pour la date du jour -> route /habits/today
 export const getTodayHabits = async (request, reply) => {
   try {
-    // Récuperer la base de donnée actuelle
     const dataBase = await getDatabase();
 
     // Obtenir la date du jour au format YYYY-MM-DD
@@ -94,25 +87,22 @@ export const getTodayHabits = async (request, reply) => {
     const todayHabits = dataBase.habits
       .filter((habit) => today in habit.daysDone) // vérifie si la date du jour est présente dans les jours effectués de l'habitude
       .map((habit) => {
-        return { id: habit.id, title: habit.title, daysDone: habit.daysDone }; // Mapper les habitudes filtrées pour obtenir seulement les titres
+        return { id: habit.id, title: habit.title, daysDone: habit.daysDone };
       });
-    // Répondre avec les titres des habitudes pour la date du jour
+
     return reply.send(todayHabits);
   } catch (err) {
-    console.error(`Error processing the request: ${err.message}`);
-    reply.code(500).send({ error: "Unable to process the request" });
+    errorHandler(err, request, reply);
   }
 };
 
-// Controleur pour obtenir des informations sur la base de donnée
+// Controleur pour obtenir des informations sur la base de donnée -> route /
 export const getDatabaseInfo = async (request, reply) => {
   try {
-    // Récupérer la base de donnée actuelle
     const dataBase = await getDatabase();
 
-    // Répondre avec un objet contenant la base de donnée
     return { dataBase };
   } catch (err) {
-    reply.code(500).send({ error: "Unable to read the database file" });
+    errorHandler(err, request, reply);
   }
 };
