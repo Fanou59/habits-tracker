@@ -9,12 +9,10 @@ const fastify = Fastify({
 // Register parent error handler
 fastify.setErrorHandler((err, request, reply) => {
   console.error(`Error processing the request : ${err.message}`);
-  reply
-    .status(500)
-    .send({
-      success: false,
-      error: `Unable to process the request : ${request}`,
-    });
+  reply.status(500).send({
+    success: false,
+    error: `Unable to process the request : ${request}`,
+  });
 });
 
 await fastify.register(cors, {
@@ -24,7 +22,7 @@ await fastify.register(cors, {
 
 await fastify.register(habitRoutes);
 
-// Run the server!
+// Run the server
 try {
   await fastify.listen({ port: 3000 });
 } catch (err) {

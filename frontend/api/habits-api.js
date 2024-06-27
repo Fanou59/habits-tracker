@@ -1,10 +1,8 @@
 // Fichier pour centraliser les appels à l'api
 
-// Déclaration des variables
 const urlBase = "http://127.0.0.1:3000";
 
-// Fetch de récupération de toutes les habitudes
-// Methode GET
+// Récupérer toutes les habitudes de la journée
 export const fetchTodayHabits = () => {
   return fetch(`${urlBase}/habits/today`, {
     method: "GET",
@@ -23,8 +21,7 @@ export const fetchTodayHabits = () => {
     });
 };
 
-// Fetch de mise à jour des habitudes
-// Méthode Patch
+// Mettre à jour les habitudes (status = true or false)
 export const updateHabitIndB = (habitId, status) => {
   return fetch(`${urlBase}/habits/${habitId}`, {
     method: "PATCH",
@@ -44,8 +41,7 @@ export const updateHabitIndB = (habitId, status) => {
     });
 };
 
-// Fetch d'ajout d'une habit
-// -> la route est /habits
+// Ajouter une habitude
 export const addHabit = (title) => {
   return fetch(`${urlBase}/habits`, {
     method: "POST",
