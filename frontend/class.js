@@ -13,7 +13,7 @@ export class TodayHabit {
   diplayHabits() {
     fetchTodayHabits().then((data) => {
       if (data) {
-        data.forEach((habit) => {
+        data.todayHabits.forEach((habit) => {
           // Création d'un HabitSquare pour chaque habitude
           const habitSquare = new HabitSquare(
             habit.id,
@@ -32,7 +32,7 @@ export class TodayHabit {
   updateHabit(habitId) {
     fetchTodayHabits()
       .then((data) => {
-        const habit = data.find((h) => h.id === habitId);
+        const habit = data.todayHabits.find((h) => h.id === habitId);
         if (!habit) {
           console.log("Habit not found");
           return;

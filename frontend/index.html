@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,11 +9,19 @@
   <body>
     <div id="app">
       <h1>Habit to make today !</h1>
-      <div id="today-habits" class="habits">
-        <button class="habit-square habit-done">
-          Test button <span>✅</span>
-        </button>
-      </div>
+      <div id="today-habits" class="habits"></div>
+
+      <dialog class="dialog">
+        <div class="dialog-content">
+          <h2>Add a new habit !</h2>
+          <button class="close-button">X</button>
+          <form action="">
+            <input type="text" placeholder="Habit" />
+            <button id="addButton">Add</button>
+          </form>
+        </div>
+      </dialog>
+
       <button id="add-new-habit">Add a new habit</button>
       <button id="open-history">See history</button>
     </div>
