@@ -1,6 +1,7 @@
 import "./style.css";
 import { TodayHabit } from "./class";
 import { addNewHabit } from "./addNewHabit";
+import { HabitHistoryDialog } from "./tableHistory";
 
 export const habitsDiv = document.getElementById("today-habits");
 
@@ -25,7 +26,13 @@ dialogModalAddCloseButton.addEventListener("click", () =>
 addButton.addEventListener("click", () => addNewHabit());
 
 // Gestion de la modal d'historique
-seeHistory.addEventListener("click", () => dialogModalHistory.showModal());
+seeHistory.addEventListener("click", (e) => {
+  e.preventDefault();
+  dialogModalHistory.showModal();
+  const history = new HabitHistoryDialog();
+  history.render();
+});
+
 dialogModalHistoryCloseButton.addEventListener("click", () =>
   dialogModalHistory.close()
 );

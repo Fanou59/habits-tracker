@@ -1,9 +1,43 @@
+import { allHabits } from "./api/habits-api";
 // Remplissage du tableau d'historique
 
 // Je vais ensuite pouvoir créer la class HabitHistoryDialog qui va :
 
-class HabitHistoryDialog{
-    
+// Fonction pour trouver la date la plus petite
+function findEarliestDate(data) {
+  // Extraire les dates et les convertir en objets Date
+  const dates = data.map((item) => new Date(item.date));
+
+  // Trouver la date la plus petite
+  const earliestDate = new Date(Math.min(...dates));
+
+  return earliestDate;
+}
+
+export class HabitHistoryDialog {
+  constructor(title, date, status) {
+    this.title = title;
+    this.date = date;
+    this.status = status;
+  }
+  render() {
+    allHabits().then((data) => {
+      const habitsInfo = data.dataBase.habits.map((habit) => ({
+        title: habit.title,
+        daysDone: habit.daysDone,
+      }));
+      habitsInfo.forEach((habit) => {
+        // Extraire les dates de `daysDone`
+        const datesArray = Object.keys(habit.daysDone).map((date) => ({
+          date,
+        }));
+
+        // Trouver la date la plus petite
+        const earliestDate = findEarliestDate(datesArray);
+        console.log("Earliest Date:", earliestDate, "Habit:", habit.title);
+      });
+    });
+  }
 }
 // Récupérer le bouton pour ouvrir la modale lors du click
 // Récupérer le dialog
