@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,14 +11,31 @@
       <h1>Habit to make today !</h1>
       <div id="today-habits" class="habits"></div>
 
-      <dialog class="dialog">
+      <!-- Modal d'ajout d'une habit -->
+      <dialog id="modalAddHabit" class="dialog">
         <div class="dialog-content">
           <h2>Add a new habit !</h2>
-          <button class="close-button">X</button>
+          <button id="closeAdd" class="close-button">X</button>
           <form action="">
             <input type="text" placeholder="Habit" />
             <button id="addButton">Add</button>
           </form>
+        </div>
+      </dialog>
+
+      <!-- Modal d'affichage de l'historique -->
+      <dialog id="modalHistory" class="dialog">
+        <div class="dialog-content">
+          <h2>Habits history</h2>
+          <table id="#table-wrapper">
+            <thead>
+              <tr>
+                <th>Habit</th>
+              </tr>
+            </thead>
+            <tbody id="bodyTableHistory"></tbody>
+          </table>
+          <button id="closeHistory" class="close-button">X</button>
         </div>
       </dialog>
 
