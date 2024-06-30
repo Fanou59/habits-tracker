@@ -64,7 +64,12 @@ export const getTodayHabits = async (request, reply) => {
   const todayHabits = dataBase.habits
     .filter((habit) => today in habit.daysDone) // vérifie si la date du jour est présente dans les jours effectués de l'habitude
     .map((habit) => {
-      return { id: habit.id, title: habit.title, daysDone: habit.daysDone };
+      return {
+        id: habit.id,
+        title: habit.title,
+        daysDone: habit.daysDone,
+        status: habit.daysDone[today],
+      };
     });
 
   return reply.send({ success: true, todayHabits });
