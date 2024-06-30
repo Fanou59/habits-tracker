@@ -60,3 +60,22 @@ export const addHabit = (title) => {
       console.log("Error", error);
     });
 };
+
+// Récuperer toutes les habitudes de la base de donnée
+export const allHabits = () => {
+  return fetch(urlBase, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.log("There was a problem with fetch operation :", error);
+    });
+};

@@ -1,20 +1,74 @@
 // Remplissage du tableau d'historique
+import { allHabits } from "./api/habits-api";
+import { formatDate, findEarliestDate, generateDateRange } from "./utils";
 
-// Je vais ensuite pouvoir créer la class HabitHistoryDialog qui va :
+export class HabitHistoryDialog {
+  constructor(title, date, status) {
+    this.title = title;
+    this.date = date;
+    this.status = status;
+  }
+  render() {
+    allHabits().then((data) => {
+      const habitsInfo = data.dataBase.habits;
+      let allDates = [];
 
-class HabitHistoryDialog{
-    
+      habitsInfo.forEach((habit) => {
+        // Extraire les dates de `daysDone`
+        const datesArray = Object.keys(habit.daysDone);
+        allDates = allDates.concat(datesArray);
+      });
+
+      // Trouver la date la plus petite
+      const earliestDate = formatDate(findEarliestDate(allDates));
+      const today = new Date();
+
+      // Générer un tableau de date en partant de la plus petite jusqu'à aujourd'hui
+      const dateRange = generateDateRange(earliestDate, today);
+      const formatDateRange = dateRange.map(formatDate);
+
+      // Sélectionner les éléments du DOM
+      const modalHistory = document.getElementById("modalHistory");
+      const tableWrapper = modalHistory.querySelector("#table-wrapper");
+      const tableHeadRow = tableWrapper.querySelector("thead tr");
+      const tableBody = tableWrapper.querySelector("tbody");
+
+      // Effacer les en-têtes précédentes
+      tableHeadRow.innerHTML = "";
+      tableBody.innerHTML = "";
+
+      // Ajouter les en-têtes des dates
+      const habitsHeaderCell = document.createElement("th");
+      habitsHeaderCell.textContent = "Habits";
+      tableHeadRow.appendChild(habitsHeaderCell);
+
+      formatDateRange.forEach((date) => {
+        const dateTh = document.createElement("th");
+        dateTh.textContent = date;
+        tableHeadRow.appendChild(dateTh);
+      });
+
+      // Ajouter le lignes d'habitudes et vérifier les dates
+      habitsInfo.forEach((habitInfo) => {
+        const habitRow = document.createElement("tr");
+        const habitNameCell = document.createElement("td");
+        habitNameCell.textContent = habitInfo.title;
+        habitRow.appendChild(habitNameCell);
+
+        formatDateRange.forEach((date) => {
+          const statusCell = document.createElement("td");
+          statusCell.classList.add("table-cell-centered");
+          if (date in habitInfo.daysDone) {
+            const status = habitInfo.daysDone[date];
+            const statusSymbol = status ? "✅" : "❌";
+            statusCell.textContent = statusSymbol;
+          } else {
+            statusCell.textContent = " ";
+          }
+          habitRow.appendChild(statusCell);
+        });
+        tableBody.appendChild(habitRow);
+      });
+    });
+  }
 }
-// Récupérer le bouton pour ouvrir la modale lors du click
-// Récupérer le dialog
-// À chaque ouverture, j'appelle la méthode render
-// Cette méthode va récupérer la liste de toutes nos habitudes qui viennent de la database. Ensuite, elle va faire des choses un peu compliquées :
-
-// Trouver la date la plus petite pour commencer notre tableau de celle-ci
-// Créer une dateRange entre aujourd'hui et la date la plus petite
-// Créer l'élément table
-// Créer la tabHeaders qui, au début, affiche "Habit" puis créera un élément pour chaque date
-// On crée un élément tr pour créer une ligne, puis th pour chaque élément
-// Créer la table rows
-// Pour chaque habitude, on va créer un élément tr pour créer une ligne
-// Puis pour chaque date, on va ajouter un élément td qui aura l'émoji "✅" si l'habitude a été faite ou "❌" si elle ne l'a pas été

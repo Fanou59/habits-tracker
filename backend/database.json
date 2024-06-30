@@ -8,7 +8,9 @@
         "2024-06-22": false,
         "2024-06-23": true,
         "2024-06-26": false,
-        "2024-06-27": false
+        "2024-06-27": false,
+        "2024-06-29": false,
+        "2024-06-30": true
       }
     },
     {
@@ -19,49 +21,63 @@
         "2024-06-22": false,
         "2024-06-23": true,
         "2024-06-26": false,
-        "2024-06-27": false
+        "2024-06-27": false,
+        "2024-06-29": false,
+        "2024-06-30": false
       }
     },
     {
       "id": 3,
-      "title": "Boire 2L d'eau",
+      "title": "test",
       "daysDone": {
-        "2024-06-22": false,
-        "2024-06-23": true,
-        "2024-06-26": false,
-        "2024-06-27": false
+        "2024-06-29": false,
+        "2024-06-30": true
       }
     },
     {
       "id": 4,
-      "title": "Faire 2h de code",
+      "title": "new test",
       "daysDone": {
-        "2024-06-19": false,
-        "2024-06-22": false,
-        "2024-06-23": false,
-        "2024-06-26": false,
-        "2024-06-27": false
+        "2024-06-29": true,
+        "2024-06-30": true
       }
     },
     {
       "id": 5,
-      "title": "Test new habit",
+      "title": "Test",
       "daysDone": {
-        "2024-06-27": false
+        "2024-06-29": true,
+        "2024-06-30": false
       }
     },
     {
       "id": 6,
-      "title": "Test n°2",
+      "title": "new habit",
       "daysDone": {
-        "2024-06-27": false
+        "2024-06-29": false,
+        "2024-06-30": true
       }
     },
     {
       "id": 7,
-      "title": "Test N°3",
+      "title": "Test 3",
       "daysDone": {
-        "2024-06-27": false
+        "2024-06-29": false,
+        "2024-06-30": false
+      }
+    },
+    {
+      "id": 8,
+      "title": "Test 4",
+      "daysDone": {
+        "2024-06-30": true
+      }
+    },
+    {
+      "id": 9,
+      "title": "New Habit 2",
+      "daysDone": {
+        "2024-06-30": true
       }
     }
   ]

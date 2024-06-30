@@ -1,5 +1,6 @@
 import { habitsDiv } from "./main";
 import { fetchTodayHabits, updateHabitIndB } from "./api/habits-api";
+import { formatDate } from "./utils";
 
 // Récuperer et mettre à jour les habitudes (affichage + dB)
 export class TodayHabit {
@@ -13,8 +14,10 @@ export class TodayHabit {
           const habitSquare = new HabitSquare(
             habit.id,
             habit.title,
+            habit.daysDone[formatDate(new Date())],
             this.updateHabit.bind(this) // Liaison de la méthode updateHabit à l'instance de TodayHabit
           );
+
           habitSquare.creationHabit();
         });
       } else {
@@ -33,7 +36,7 @@ export class TodayHabit {
           return;
         }
 
-        const today = new Date().toISOString().split("T")[0];
+        const today = formatDate(new Date());
 
         // Vérifier si un statut est déjà enregistré pour aujourd'hui
         const currentStatus = habit.daysDone[today];
@@ -45,8 +48,6 @@ export class TodayHabit {
           updateHabitIndB(habitId, newStatus)
             .then((response) => {
               if (response && response.success) {
-                console.log(`Habit ${habitId} updated successfully`);
-
                 habit.daysDone[today] = newStatus;
 
                 // Mettre à jour l'interface utilisateur
@@ -87,20 +88,26 @@ export class TodayHabit {
 
 // Créer l'élément HTML de l'habit
 export class HabitSquare {
-  constructor(id, habit, update) {
-    this.habit = habit;
+  constructor(id, habit, initialStatus, update) {
     this.id = id;
+    this.habit = habit;
+    this.status = initialStatus;
     this.update = update; // callback pour la mise à jour
   }
   // Méthode pour créer un élément de type bouton représentant une habitude
   creationHabit() {
     const buttonHabit = document.createElement("button");
 
-    const unchecked = document.createElement("span");
-    unchecked.innerText = "❌";
     buttonHabit.classList.add("habit-square");
     buttonHabit.innerText = this.habit;
     buttonHabit.setAttribute("data-id", this.id);
+    buttonHabit.innerHTML = `${this.habit} <span>❌</span>`;
+
+    // Mise à jour de l'apparence
+    if (this.status) {
+      buttonHabit.classList.add("habit-done");
+      buttonHabit.innerHTML = `${this.habit} <span>✅</span>`;
+    }
 
     buttonHabit.addEventListener("click", () => {
       this.update(this.id);
@@ -108,7 +115,6 @@ export class HabitSquare {
 
     eventTrigger(buttonHabit);
     habitsDiv.appendChild(buttonHabit);
-    buttonHabit.appendChild(unchecked);
   }
 }
 
