@@ -1,5 +1,5 @@
 // Remplissage du tableau d'historique
-import { allHabits } from "./api/habits-api";
+import { allHabits } from "./api-calls/habits-api";
 import { formatDate, findEarliestDate, generateDateRange } from "./utils";
 
 export class HabitHistoryDialog {

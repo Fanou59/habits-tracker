@@ -1,4 +1,4 @@
-import { addHabit } from "./api/habits-api";
+import { addHabit } from "./api-calls/habits-api";
 
 export function addNewHabit() {
   const inputAddHabit = document.querySelector("input");

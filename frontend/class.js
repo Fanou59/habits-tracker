@@ -1,5 +1,5 @@
 import { habitsDiv } from "./main";
-import { fetchTodayHabits, updateHabitIndB } from "./api/habits-api";
+import { fetchTodayHabits, updateHabitIndB } from "./api-calls/habits-api";
 import { formatDate } from "./utils";
 
 // Récuperer et mettre à jour les habitudes (affichage + dB)
