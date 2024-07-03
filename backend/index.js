@@ -20,7 +20,7 @@ await fastify.register(cors, {
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
 });
 
-await fastify.register(habitRoutes, { prefix: "/api" });
+await fastify.register(habitRoutes);
 
 // Run the server
 // try {
