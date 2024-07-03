@@ -1,6 +1,6 @@
 // Fichier pour centraliser les appels à l'api
 
-const urlBase = "http://127.0.0.1:3000";
+const urlBase = process.env.REACT_APP_API_BASE_URL || "http://127.0.0.1:3000";
 
 // Récupérer toutes les habitudes de la journée
 export const fetchTodayHabits = () => {
