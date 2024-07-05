@@ -112,14 +112,12 @@ export class HabitSquare {
     buttonHabit.addEventListener("click", () => {
       this.update(this.id);
     });
-
-    eventTrigger(buttonHabit);
     habitsDiv.appendChild(buttonHabit);
   }
 }
 
 // le lien entre les 2 class se fait via EventTrigger
 // l'EventTrigger check si l'input est cliqué ou pas
-const eventTrigger = (e) => {
-  e.addEventListener("click", () => {});
-};
+// const eventTrigger = (e) => {
+//   e.addEventListener("click", () => {});
+// };

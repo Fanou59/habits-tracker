@@ -23,7 +23,11 @@ addNewHabitButton.addEventListener("click", () => dialogModalAdd.showModal());
 dialogModalAddCloseButton.addEventListener("click", () =>
   dialogModalAdd.close()
 );
-addButton.addEventListener("click", () => addNewHabit());
+addButton.addEventListener("click", () => {
+  addNewHabit();
+  dialogModalAdd.close();
+  dayOne.diplayHabits();
+});
 
 // Gestion de la modal d'historique
 seeHistory.addEventListener("click", (e) => {

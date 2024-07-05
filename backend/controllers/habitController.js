@@ -2,6 +2,7 @@ import { getDatabase, saveDatabase } from "../models/habitModel.js";
 
 // Ajouter une nouvelle habitude
 export const addHabit = async (request, reply) => {
+  const today = new Date().toISOString().split("T")[0];
   const dataBase = await getDatabase();
 
   // calculer l'identifiant pour l'habitude

@@ -11,7 +11,7 @@ fastify.setErrorHandler((err, request, reply) => {
   console.error(`Error processing the request : ${err.message}`);
   reply.status(500).send({
     success: false,
-    error: `Unable to process the request : ${request}`,
+    error: `Unable to process the request : ${request.url}`,
   });
 });
 
@@ -20,17 +20,17 @@ await fastify.register(cors, {
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
 });
 
-await fastify.register(habitRoutes, { prefix: "/api" });
+await fastify.register(habitRoutes);
 
-// Run the server
-// try {
-//   await fastify.listen({ port: 3000 });
-// } catch (err) {
-//   fastify.log.error(err);
-//   process.exit(1);
-// }
+//Run the server
+try {
+  await fastify.listen({ port: 3000 });
+} catch (err) {
+  fastify.log.error(err);
+  process.exit(1);
+}
 
-export default async (req, res) => {
-  await fastify.ready();
-  fastify.server.emit("request", req, res);
-};
+// export default async (req, res) => {
+//   await fastify.ready();
+//   fastify.server.emit("request", req, res);
+// };

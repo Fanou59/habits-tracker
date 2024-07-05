@@ -11,7 +11,8 @@
         "2024-06-27": false,
         "2024-06-29": false,
         "2024-06-30": true,
-        "2024-07-03": true
+        "2024-07-03": true,
+        "2024-07-05": true
       }
     },
     {
@@ -25,75 +26,22 @@
         "2024-06-27": false,
         "2024-06-29": false,
         "2024-06-30": false,
-        "2024-07-03": false
+        "2024-07-03": false,
+        "2024-07-05": true
       }
     },
     {
       "id": 3,
-      "title": "test",
+      "title": "Lire 3h",
       "daysDone": {
-        "2024-06-29": false,
-        "2024-06-30": true,
-        "2024-07-03": false
+        "2024-07-05": true
       }
     },
     {
       "id": 4,
-      "title": "new test",
+      "title": "test",
       "daysDone": {
-        "2024-06-29": true,
-        "2024-06-30": true,
-        "2024-07-03": false
-      }
-    },
-    {
-      "id": 5,
-      "title": "Test",
-      "daysDone": {
-        "2024-06-29": true,
-        "2024-06-30": false,
-        "2024-07-03": false
-      }
-    },
-    {
-      "id": 6,
-      "title": "new habit",
-      "daysDone": {
-        "2024-06-29": false,
-        "2024-06-30": true,
-        "2024-07-03": false
-      }
-    },
-    {
-      "id": 7,
-      "title": "Test 3",
-      "daysDone": {
-        "2024-06-29": false,
-        "2024-06-30": false,
-        "2024-07-03": false
-      }
-    },
-    {
-      "id": 8,
-      "title": "Test 4",
-      "daysDone": {
-        "2024-06-30": true,
-        "2024-07-03": true
-      }
-    },
-    {
-      "id": 9,
-      "title": "New Habit 2",
-      "daysDone": {
-        "2024-06-30": true,
-        "2024-07-03": false
-      }
-    },
-    {
-      "id": 10,
-      "title": "Test 6",
-      "daysDone": {
-        "2024-07-03": true
+        "2024-07-05": false
       }
     }
   ]
