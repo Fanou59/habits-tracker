@@ -28,7 +28,7 @@ Notre application propose une interface simple pour suivre vos habitudes quotidi
 - **CSS** pour le style.
 - **JavaScript** pour l'interactivité.
 - **Dialog Element** pour les modales.
-- \*\*NodeJs pour le backend
+- **NodeJs** pour le backend
 
 ## Installation
 
@@ -39,8 +39,8 @@ Notre application propose une interface simple pour suivre vos habitudes quotidi
 2. ```bash
    npm install
    ```
-3. Dans le dossier frontend -> `bash npm run dev`
-4. Dans le dossier backend -> `bash npm run dev`
+3. Dans le dossier frontend -> `npm run dev`
+4. Dans le dossier backend -> `npm run dev`
 5. Ouvrez l'adresse http://localhost:5173
 
 ## Utilisation
